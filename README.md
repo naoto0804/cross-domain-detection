@@ -1,6 +1,6 @@
 # Cross Domain Object Detection
 
-This is a project page for a paper, Cross-Domain Weakly-Supervised Object Detection through Progressive Domain Adaptation [Inoue+, CVPR2018].
+This page is for a paper, Cross-Domain Weakly-Supervised Object Detection through Progressive Domain Adaptation [Inoue+, CVPR2018].
 
 ## Requirements
 - Python 3.5+
@@ -25,10 +25,15 @@ python demo.py input/watercolor_142090457.jpg output.jpg --gpu 0 --load models/w
 python eval_model.py --root datasets/clipart --data_type clipart --det_type ssd300 --gpu 0 --load models/clipart_ssd300
 ```
 
-### Training original models
+### Training using clean instance-level annotations (ideal case)
 ```
 python train_model.py --root datasets/clipart --subset train --result result --det_type ssd300 --data_type clipart --gpu 0
 ```
 
+### Training using virtually created instance-level annotations
+
+Work in progress..
+
 ## References
 - [1]: N. Inoue et al. "Cross-Domain Weakly-Supervised Object Detection through Progressive Domain Adaptation", in CVPR, 2018.
+- [2]: [Original project page for [1]](https://github.com/naoto0804/cross-domain-detection)
