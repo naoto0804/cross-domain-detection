@@ -1,6 +1,6 @@
-# Cross Domain Object Detection
+# Cross-Domain Weakly-Supervised Object Detection through Progressive Domain Adaptation 
 
-This page is for a paper, Cross-Domain Weakly-Supervised Object Detection through Progressive Domain Adaptation [Inoue+, CVPR2018].
+This page is for a CVPR2018 paper [1].
 
 ## Requirements
 - Python 3.5+
