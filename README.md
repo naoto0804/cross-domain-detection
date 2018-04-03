@@ -3,6 +3,9 @@
 This page is for a paper which is to appear in CVPR2018 [1].
 You can also find project page for the paper in [2].
 
+Here is the example of our results in watercolor images.
+![fig](dets_watercolor.png)
+
 ## Requirements
 - Python 3.5+
 - Chainer 3.0+
