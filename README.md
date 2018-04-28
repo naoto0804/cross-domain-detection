@@ -38,6 +38,19 @@ python train_model.py --root datasets/clipart --subset train --result result --d
 
 Work in progress..
 
+### Citation
+
+If you find this code useful for your research, please cite our paper:
+
+```
+@inproceedings{InoueCVPR2018,
+  title={{Cross-Domain Weakly-Supervised Object Detection through Progressive Domain Adaptation}},
+  author={Naoto Inoue and Ryosuke Furuta and Toshihiko Yamasaki and Kiyoharu Aizawa},
+  booktitle={CVPR},
+   year={2018},
+}
+```
+
 ## References
 - [1]: [N. Inoue et al. "Cross-Domain Weakly-Supervised Object Detection through Progressive Domain Adaptation", in CVPR, 2018.](https://arxiv.org/abs/1803.11365)
 - [2]: [Project page](https://naoto0804.github.io/cross_domain_detection/)
