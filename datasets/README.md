@@ -7,11 +7,25 @@ Please refer to the paper for further details about the datasets.
 
 We do not hold the copyright to the images in the datasets, but to avoid the tedium of downloading and processing the data, we are making available our local copy of the data.
 
-## Download
+## Download original datasets
 
 ```
 bash download.sh
 ```
+
+## Datasets for domain transfer
+This script creates `dt_<domain>` directories.
+```
+bash create_datasets_dt.sh
+```
+Please add annotations under `./dt_<domain>/JPEGImages`
+
+## Datasets for pseudo labeling
+This script creates `pl_<domain>` directories.
+```
+bash create_datasets_pl.sh
+```
+Please add annotations under `./pl_<domain>/Annotations`
 
 ## Structure of Dataset
 We followed [PASCAL VOC format](http://host.robots.ox.ac.uk/pascal/VOC/) basically.
