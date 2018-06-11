@@ -3,7 +3,9 @@ We provide three datasets (Clipart1k, Watercolor2k, Comic2k).
 
 Please refer to the paper for further details about the datasets.
 
-We do not hold the copyright to the images in the datasets, but to avoid the tedium of downloading and processing the data, we are making available our local copy of the data for non-commercial research purposes only.
+**Note that these datasets are meant for education and research purposes only.**
+
+We do not hold the copyright to the images in the datasets, but to avoid the tedium of downloading and processing the data, we are making available our local copy of the data.
 
 ## Download
 
