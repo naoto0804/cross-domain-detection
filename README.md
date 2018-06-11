@@ -44,11 +44,11 @@ If you find this code useful for your research, please cite our paper:
 
 ```
 @InProceedings{Inoue_2018_CVPR,
-author = {Inoue, Naoto and Furuta, Ryosuke and Yamasaki, Toshihiko and Aizawa, Kiyoharu},
-title = {Cross-Domain Weakly-Supervised Object Detection Through Progressive Domain Adaptation},
-booktitle = {The IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
-month = {June},
-year = {2018}
+  author = {Inoue, Naoto and Furuta, Ryosuke and Yamasaki, Toshihiko and Aizawa, Kiyoharu},
+  title = {Cross-Domain Weakly-Supervised Object Detection Through Progressive Domain Adaptation},
+  booktitle = {The IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
+  month = {June},
+  year = {2018}
 }
 ```
 
