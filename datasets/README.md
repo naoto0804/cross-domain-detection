@@ -13,19 +13,19 @@ We do not hold the copyright to the images in the datasets, but to avoid the ted
 bash download.sh
 ```
 
-## Datasets for domain transfer
+## Datasets for step1 (domain transfer)
 This script creates `dt_<domain>` directories.
 ```
 bash create_datasets_dt.sh
 ```
-Please add annotations under `./dt_<domain>/JPEGImages`
+Please add domain-transferred images under `./dt_<domain>/JPEGImages`
 
-## Datasets for pseudo labeling
-This script creates `pl_<domain>` directories.
+## Datasets for step2 (pseudo labeling after step1)
+This script creates `dt_pl_<domain>` directories.
 ```
-bash create_datasets_pl.sh
+bash create_datasets_dt_pl.sh
 ```
-Please add annotations under `./pl_<domain>/Annotations`
+Please add annotations under `./dt_pl_<domain>/Annotations`
 
 ## Structure of Dataset
 We followed [PASCAL VOC format](http://host.robots.ox.ac.uk/pascal/VOC/) basically.

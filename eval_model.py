@@ -1,7 +1,4 @@
 import argparse
-import sys
-import time
-
 import chainer
 import numpy as np
 from chainercv.datasets import voc_bbox_label_names
@@ -10,21 +7,6 @@ from chainercv.utils import apply_prediction_to_iterator
 
 import helper
 import opt
-
-
-class ProgressHook(object):
-    def __init__(self, n_total):
-        self.n_total = n_total
-        self.start = time.time()
-        self.n_processed = 0
-
-    def __call__(self, imgs, pred_values, gt_values):
-        self.n_processed += len(imgs)
-        fps = self.n_processed / (time.time() - self.start)
-        sys.stdout.write(
-            '\r{:d} of {:d} images, {:.2f} FPS'.format(
-                self.n_processed, self.n_total, fps))
-        sys.stdout.flush()
 
 
 def main():
@@ -59,7 +41,7 @@ def main():
         dataset, args.batchsize, repeat=False, shuffle=False)
 
     imgs, pred_values, gt_values = apply_prediction_to_iterator(
-        model.predict, iterator, hook=ProgressHook(len(dataset)))
+        model.predict, iterator, hook=helper.ProgressHook(len(dataset)))
     # delete unused iterator explicitly
     del imgs
 

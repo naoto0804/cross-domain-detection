@@ -1,12 +1,11 @@
 #! /usr/bin/env python3
 
 import argparse
-import copy
-import os
-
 import chainer
 import chainercv.links
+import copy
 import numpy as np
+import os
 from chainer import serializers
 from chainer import training
 from chainer.datasets import TransformDataset
@@ -137,6 +136,7 @@ if __name__ == '__main__':
     parser.add_argument('--resume',
                         help='path of the model to resume from')
     parser.add_argument('--load', help='load original trained model')
+    parser.add_argument('--eval_root')
 
     # Optional hyper parameters that you can change
     parser.add_argument('--batchsize', type=int, default=32)
@@ -148,8 +148,10 @@ if __name__ == '__main__':
     parser.add_argument('--eval_interval', type=int, default=250)
     args = parser.parse_args()
 
-    datasets_train = get_detection_dataset(args.data_type, args.subset, args.root)
-    dataset_test = get_detection_dataset(args.data_type, 'test', args.root)
+    datasets_train = get_detection_dataset(args.data_type, args.subset,
+                                           args.root)
+    dataset_test = get_detection_dataset(args.data_type, 'test',
+                                         args.eval_root if args.eval_root else args.root)
 
     model_args = {'n_fg_class': len(voc_bbox_label_names),
                   'pretrained_model': 'voc0712'}
