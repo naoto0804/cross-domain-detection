@@ -1,6 +1,10 @@
-# Cross Domain Object Detection
+# Cross-Domain Weakly-Supervised Object Detection through Progressive Domain Adaptation 
 
-This is a project page for a paper, Cross-Domain Weakly-Supervised Object Detection through Progressive Domain Adaptation [Inoue+, CVPR2018].
+This page is for a paper which is to appear in CVPR2018 [1].
+You can also find project page for the paper in [2].
+
+Here is the example of our results in watercolor images.
+![fig](dets_watercolor.png)
 
 ## Requirements
 - Python 3.5+
@@ -25,10 +29,29 @@ python demo.py input/watercolor_142090457.jpg output.jpg --gpu 0 --load models/w
 python eval_model.py --root datasets/clipart --data_type clipart --det_type ssd300 --gpu 0 --load models/clipart_ssd300
 ```
 
-### Training original models
+### Training using clean instance-level annotations (ideal case)
 ```
 python train_model.py --root datasets/clipart --subset train --result result --det_type ssd300 --data_type clipart --gpu 0
 ```
 
+### Training using virtually created instance-level annotations
+
+Work in progress..
+
+### Citation
+
+If you find this code useful for your research, please cite our paper:
+
+```
+@InProceedings{Inoue_2018_CVPR,
+  author = {Inoue, Naoto and Furuta, Ryosuke and Yamasaki, Toshihiko and Aizawa, Kiyoharu},
+  title = {Cross-Domain Weakly-Supervised Object Detection Through Progressive Domain Adaptation},
+  booktitle = {The IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
+  month = {June},
+  year = {2018}
+}
+```
+
 ## References
-- [1]: N. Inoue et al. "Cross-Domain Weakly-Supervised Object Detection through Progressive Domain Adaptation", in CVPR, 2018.
+- [1]: [N. Inoue et al. "Cross-Domain Weakly-Supervised Object Detection through Progressive Domain Adaptation", in CVPR, 2018.](https://arxiv.org/abs/1803.11365)
+- [2]: [Project page](https://naoto0804.github.io/cross_domain_detection/)
