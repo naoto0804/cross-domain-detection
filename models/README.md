@@ -1,7 +1,7 @@
 # Models
 We provide the models trained by our methods.
 
-(For the baseline model, we use the models provided by ChainerCV.)
+(For the baseline model, we use the models which is pre-trained on VOC2007/2012-trainval provided by ChainerCV.)
 
 Mean average precision (mAP) \[%\] for each method is shown below.
 
