@@ -42,11 +42,11 @@ python train_model.py --root datasets/clipart --subset train --result result --d
 
 Rest of this section shows examples for experiments in `clipart` dataset.
 
-1. (Preprocess): please follow instructions in `datasets/README.md` to create folders.
+1. (Preprocess): please follow instructions in `./datasets/README.md` to create folders.
 
 2. Domain transfer (DT) step
-    1. Prepare domain transferred images under `./datasets/dt_clipart/JPEGImages`.
-    2. `python train_model.py --root datasets/dt_clipart --subset train --result result/dt_clipart --det_type ssd300 --data_type clipart --gpu 0 --max_iter 500`
+We provide models obtained in this step at `./models`.
+    1. `python train_model.py --root datasets/dt_clipart/VOC2007 --root datasets/dt_clipart/VOC2012 --subset train --result result/dt_clipart --det_type ssd300 --data_type clipart --gpu 0 --max_iter 500`
 
 3. Pseudo labeling (PL) step
     1. `python pseudo_label.py --root datasets/clipart --data_type clipart --det_type ssd300 --gpu 0 --load models/clipart_dt_ssd300 --result datasets/dt_pl_clipart`

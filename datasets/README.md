@@ -1,4 +1,4 @@
-# Datasets
+# Overview
 We provide three datasets (Clipart1k, Watercolor2k, Comic2k).
 
 Please refer to the paper for further details about the datasets.
@@ -7,27 +7,7 @@ Please refer to the paper for further details about the datasets.
 
 We do not hold the copyright to the images in the datasets, but to avoid the tedium of downloading and processing the data, we are making available our local copy of the data.
 
-## Download original datasets
-
-```
-bash download.sh
-```
-
-## Datasets for step1 (domain transfer)
-This script creates `dt_<domain>` directories.
-```
-bash create_datasets_dt.sh
-```
-Please add domain-transferred images under `./dt_<domain>/JPEGImages`
-
-## Datasets for step2 (pseudo labeling after step1)
-This script creates `dt_pl_<domain>` directories.
-```
-bash create_datasets_dt_pl.sh
-```
-Please add annotations under `./dt_pl_<domain>/Annotations`
-
-## Structure of Dataset
+# Details for the datasets
 We followed [PASCAL VOC format](http://host.robots.ox.ac.uk/pascal/VOC/) basically.
 
 The structure of the dataset is as follows:
@@ -47,7 +27,7 @@ We describe an xml element that indicates origin of an image in each dataset.
 
 We inserted dummy `bndbox` element although the category indicated by `name` is valid (actually existing in the image).
 
-```        
+```
          <object>
                 <name>person</name>
                 <pose>Unspecified</pose>
@@ -61,3 +41,24 @@ We inserted dummy `bndbox` element although the category indicated by `name` is 
                 </bndbox>
         </object>
 ```
+
+# Setup
+
+## Download original datasets
+
+```
+bash prepare.sh
+```
+
+## Download domain-transferred images for step1 (CycleGAN)
+This script creates `dt_<domain>` directories.
+```
+bash prepare_dt.sh
+```
+
+## Prepare datasets for step2 (pseudo labeling after step1)
+This script creates `dt_pl_<domain>` directories.
+```
+bash prepare_dt_pl.sh
+```
+Note that `Annotations` will be created by `pseudo_label.py`.
