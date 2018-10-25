@@ -10,7 +10,7 @@ Here is the example of our results in watercolor images.
 ## Requirements
 - Python 3.5+
 - Chainer 3.0+
-- ChainerCV 0.8+
+- ChainerCV 0.8.0
 - Cupy 2.0+
 - OpenCV 3+
 - Matplotlib
