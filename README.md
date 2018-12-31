@@ -46,7 +46,7 @@ Rest of this section shows examples for experiments in `clipart` dataset.
 
 2. Domain transfer (DT) step
 
-    1. `python train_model.py --root datasets/dt_clipart/VOC2007 --root datasets/dt_clipart/VOC2012 --subset train --result result/dt_clipart --det_type ssd300 --data_type clipart --gpu 0 --max_iter 500`
+    1. `python train_model.py --root datasets/dt_clipart/VOC2007 --root datasets/dt_clipart/VOC2012 --subset trainval --result result/dt_clipart --det_type ssd300 --data_type clipart --gpu 0 --max_iter 500 --eval_root datasets/clipart`
     
     We provide models obtained in this step at `./models`.
 
