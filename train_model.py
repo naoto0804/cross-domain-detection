@@ -1,11 +1,11 @@
 #! /usr/bin/env python3
 
 import argparse
-import chainer
-import chainercv.links
 import copy
-import numpy as np
 import os
+
+import chainer
+import numpy as np
 from chainer import serializers
 from chainer import training
 from chainer.datasets import TransformDataset
@@ -16,12 +16,14 @@ from chainer.training import extensions
 from chainercv import transforms
 from chainercv.datasets import voc_bbox_label_names
 from chainercv.extensions import DetectionVOCEvaluator
+from chainercv.links.model.faster_rcnn import FasterRCNNTrainChain
 from chainercv.links.model.ssd import GradientScaling
 from chainercv.links.model.ssd import multibox_loss
 from chainercv.links.model.ssd import random_crop_with_bbox_constraints
 from chainercv.links.model.ssd import random_distort
 from chainercv.links.model.ssd import resize_with_random_interpolation
 
+import helper
 import opt
 from helper import get_detection_dataset
 
@@ -123,6 +125,26 @@ class SSDTransform(object):
         return img, mb_loc, mb_label
 
 
+class FasterRCNNTransform(object):
+    def __init__(self, faster_rcnn):
+        self.faster_rcnn = faster_rcnn
+
+    def __call__(self, in_data):
+        img, bbox, label = in_data
+        _, H, W = img.shape
+        img = self.faster_rcnn.prepare(img)
+        _, o_H, o_W = img.shape
+        scale = o_H / H
+        bbox = transforms.resize_bbox(bbox, (H, W), (o_H, o_W))
+
+        # horizontally flip
+        img, params = transforms.random_flip(
+            img, x_random=True, return_param=True)
+        bbox = transforms.flip_bbox(
+            bbox, (o_H, o_W), x_flip=params['x_flip'])
+        return img, bbox, label, scale
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--root', required=True)
@@ -131,8 +153,7 @@ if __name__ == '__main__':
     parser.add_argument('--gpu', type=int, default=-1)
     parser.add_argument('--data_type', default='clipart',
                         choices=opt.data_types)
-    parser.add_argument('--det_type', choices=['ssd300'],
-                        default='ssd300')
+    parser.add_argument('--det_type', choices=opt.detectors, default='ssd300')
     parser.add_argument('--resume',
                         help='path of the model to resume from')
     parser.add_argument('--load', help='load original trained model')
@@ -155,7 +176,7 @@ if __name__ == '__main__':
 
     model_args = {'n_fg_class': len(voc_bbox_label_names),
                   'pretrained_model': 'voc0712'}
-    model = getattr(chainercv.links, args.det_type.upper())(**model_args)
+    model = helper.get_detector(args.det_type, model_args)
 
     if not os.path.exists(args.result):
         os.mkdir(args.result)
@@ -164,15 +185,18 @@ if __name__ == '__main__':
         chainer.serializers.load_npz(args.load, model)
 
     model.use_preset('evaluate')
-    train_chain = SSDMultiboxTrainChain(model)
+    if args.det_type == 'faster':
+        train_chain = FasterRCNNTrainChain(model)
+        train_transform = FasterRCNNTransform(model)
+    else:
+        train_chain = SSDMultiboxTrainChain(model)
+        train_transform = SSDTransform(model.coder, model.insize, model.mean)
 
     if args.gpu >= 0:
         chainer.cuda.get_device_from_id(args.gpu).use()
         model.to_gpu()
 
-    train = TransformDataset(
-        datasets_train,
-        SSDTransform(model.coder, model.insize, model.mean))
+    train = TransformDataset(datasets_train, train_transform)
 
     train_iter = MultiprocessIterator(train, args.batchsize, n_processes=4,
                                       shared_mem=100000000)
