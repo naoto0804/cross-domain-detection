@@ -59,11 +59,11 @@ Rest of this section shows examples for experiments in `clipart` dataset.
 If you find this code or dataset useful for your research, please cite our paper:
 
 ```
-@inproceedings{inoue_2018_cvpr,
-  author = {Inoue, Naoto and Furuta, Ryosuke and Yamasaki, Toshihiko and Aizawa, Kiyoharu},
-  title = {Cross-Domain Weakly-Supervised Object Detection Through Progressive Domain Adaptation},
-  booktitle = {The IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
-  month = {June},
-  year = {2018}
+@inproceedings{inoue2018cross,
+  title={Cross-domain weakly-supervised object detection through progressive domain adaptation},
+  author={Inoue, Naoto and Furuta, Ryosuke and Yamasaki, Toshihiko and Aizawa, Kiyoharu},
+  booktitle={Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition},
+  pages={5001--5009},
+  year={2018}
 }
 ```
